@@ -1,1 +1,1 @@
-# My Name Is Tlotliso Mokati From *Maseru Roma* Studying *Software Engineering* doing My Fourth Year.I love Javascript Frameworks
+# My Name Is Tlotliso Mokati From *Maseru Roma* Studying *Software Engineering* doing My Fourth Year.I love Javascript Frameworks.
