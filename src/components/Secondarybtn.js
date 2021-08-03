@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Sbutton = () => {
+const Buttons= () => {
     return (
       <div>
-        
+         <button>Secodary</button>
       </div>
     );
 }
 
-export default Sbutton;
+export default Buttons;
