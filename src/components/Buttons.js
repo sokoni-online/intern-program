@@ -8,5 +8,4 @@ const Button = ({value,styleClass}) => {
       </section>
     );
 }
-
 export default Button;

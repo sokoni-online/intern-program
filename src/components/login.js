@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from './Buttons';
+import  '../data/Data.json';
 function Login() {
 	return (
 		<div className="pl-10 my-48">
