@@ -1,7 +1,7 @@
 import React from 'react';
-import Navigation from './components/Navigation.js'
-import Button from './components/Primarybtn.js';
-import Buttons from './components/Secondarybtn.js';
+import Navigation from './components/Navigation'
+import Button from './components/PrimaryBtn';
+import Buttons from './components/Secondarybtn';
 import './App.css';
 
 function App() {
