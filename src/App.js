@@ -6,10 +6,9 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
-
 	return (
 		<Router>
-			<div className="App">
+			<div  className="App">
 				<Navigation />
 				<Switch>
 					<Route path="/login" component={Login} />
