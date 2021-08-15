@@ -1,6 +1,8 @@
-[
-    {
-        "email":"tlotlisomokati@gmail.com",
-        "password":"Mokati@123"
-    }
-]
+{
+    "Data": [
+        {
+            "email": "tlotlisomokati@gmail.com",
+            "password": "Mokati@123"
+        }
+    ]
+}
