@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './Buttons';
-import  '../data/Data.json';
+import {Link} from 'react-router-dom';
 function Login() {
 	return (
 		<div className="pl-10 my-48">
@@ -53,6 +53,9 @@ function Login() {
 							styleClass="bg-blue-500 px-5 py-2 text-white grid-flow-row text-lg font-bold"
 							id='btnLogin'
 						/>
+						  <Link to="/Register" className="p-4 text-blue text-blue-400 tracking-normal flex justify-center">
+							Have No Account? Signup here
+						 </Link>	
 					</div>
 				</div>
 			</form>
