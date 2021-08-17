@@ -1,13 +1,21 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import Navigation from './components/Navigation.js';
 import Login from './components/login';
+import MobileControl from './components/Mobilecontrol.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SignUp from './components/Register.js';
 function App() {
+
+	const [isToggle,setIsToggle] = useState(false);
+
+	const toggler = () => {
+		setIsToggle(!isToggle);
+	};
 	return (
 		<Router>
 			<div  className="App">
-				<Navigation />
+				<Navigation toggler={toggler} />
+				<MobileControl isToggle={isToggle} toggler={toggler} />
 				<Switch>
 					<Route path="/login" exact component={Login} />
 					<Route path="/" exact component={Home} />
@@ -19,7 +27,7 @@ function App() {
 }
 const Home = () => {
 	return (
-		<div>
+		<div className="text-black text-center place-items-center text-7xl">
 			<h1>WELCOME HOME</h1>
 		</div>
 	);
