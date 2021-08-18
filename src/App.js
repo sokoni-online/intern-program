@@ -11,6 +11,18 @@ function App() {
 	const toggler = () => {
 		setIsToggle(!isToggle);
 	};
+
+	useEffect(() => {
+		 const moveMenu=()=>{
+			if(window.innerWidth>768 && isToggle){
+				setIsToggle(false);		
+			 }
+		}
+		window.addEventListener('resize', moveMenu);
+		return () => {
+			window.removeEventListener('resize', moveMenu);
+		}
+	 })
 	return (
 		<Router>
 			<div  className="App">
