@@ -1,6 +1,17 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+import {useLocalStorage } from './useLocalStorage';
 import Button from './Buttons';
 function SignUp() {
+	const [email, setEmail] = useLocalStorage("email","");
+	const [password, setPassword] = useLocalStorage("password","");
+	const [confirmPassword, setconfirmPassword] = useLocalStorage("confirmPassword","");
+
+	useEffect(() => {
+		// storing input name
+		localStorage.setItem("email", JSON.stringify(email));
+		localStorage.setItem("password", JSON.stringify(password));
+		localStorage.setItem("confirmPassword", JSON.stringify(confirmPassword));
+	}, [email,password,confirmPassword]);
 	return (
 		<div>
 			<div className="p-10 my-30 ">
@@ -15,6 +26,8 @@ function SignUp() {
 							<input
 								type="email"
 								id="email"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
 								placeholder="Your Email"
 								className=" bg-gray-200 appearance-none border border-transparent rounded w-full px-4 py-2
 								focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -26,15 +39,21 @@ function SignUp() {
 							<input
 								type="password"
 								id="password"
+								placeholder="Password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
 								className=" bg-gray-200 appearance-none border border-transparent focus:outline-none 
 								focus:ring-2 focus:ring-blue-500 focus:border-transparent rounded w-full px-4 py-2 text-gray-700 my-2"
 							/>
-						   <label className=" my-3 block tracking-wide text-blue-400 text-base font-bold mb-2">
+							<label className=" my-3 block tracking-wide text-blue-400 text-base font-bold mb-2">
 								Confirm Password
 							</label>
 							<input
 								type="password"
 								id="password"
+								placeholder="Confirm Password"
+								value={confirmPassword}
+								onChange={(e) => setconfirmPassword(e.target.value)}
 								className="bg-gray-200 appearance-none border border-transparent rounded w-full px-4 py-2 text-gray-700  my-2
 								focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
 							/>
