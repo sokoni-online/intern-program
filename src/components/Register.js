@@ -1,17 +1,35 @@
-import React,{useEffect} from 'react';
-import {useLocalStorage } from './useLocalStorage';
+import React,{useState,useEffect} from 'react';
 import Button from './Buttons';
-function SignUp() {
-	const [email, setEmail] = useLocalStorage("email","");
-	const [password, setPassword] = useLocalStorage("password","");
-	const [confirmPassword, setconfirmPassword] = useLocalStorage("confirmPassword","");
 
+function SignUp() {
+
+	const [email, setEmail] = useState(() => {
+		// getting stored value
+		const saved = localStorage.getItem("email");
+		const initialValue = JSON.parse(saved);
+		return initialValue || "";
+	});
+	const [confirmPassword, setConfirmPassword] = useState(() => {
+		// getting stored value
+		const savedConfirm = localStorage.getItem("confirmPassword");
+		const initialValue = JSON.parse(savedConfirm);
+		return initialValue || "";
+	});
+	const [password, setPassword] = useState(() => {
+		// getting stored value
+		const savedPassword = localStorage.getItem("password");
+		const initialValue = JSON.parse(savedPassword);
+		return initialValue || "";
+	});
+
+	//storing the inputs
 	useEffect(() => {
 		// storing input name
 		localStorage.setItem("email", JSON.stringify(email));
 		localStorage.setItem("password", JSON.stringify(password));
-		localStorage.setItem("confirmPassword", JSON.stringify(confirmPassword));
-	}, [email,password,confirmPassword]);
+		localStorage.setItem("confirmPassword",JSON.stringify(confirmPassword));
+	}, [email, password, confirmPassword]);
+	
 	return (
 		<div>
 			<div className="p-10 my-30 ">
@@ -26,13 +44,11 @@ function SignUp() {
 							<input
 								type="email"
 								id="email"
-								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 								placeholder="Your Email"
 								className=" bg-gray-200 appearance-none border border-transparent rounded w-full px-4 py-2
 								focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
 							/>
-
 							<label className=" my-3 block tracking-wide text-blue-400 text-base font-bold mb-2">
 								Password
 							</label>
@@ -40,7 +56,6 @@ function SignUp() {
 								type="password"
 								id="password"
 								placeholder="Password"
-								value={password}
 								onChange={(e) => setPassword(e.target.value)}
 								className=" bg-gray-200 appearance-none border border-transparent focus:outline-none 
 								focus:ring-2 focus:ring-blue-500 focus:border-transparent rounded w-full px-4 py-2 text-gray-700 my-2"
@@ -52,8 +67,7 @@ function SignUp() {
 								type="password"
 								id="password"
 								placeholder="Confirm Password"
-								value={confirmPassword}
-								onChange={(e) => setconfirmPassword(e.target.value)}
+								onChange={(e) => setConfirmPassword(e.target.value)}
 								className="bg-gray-200 appearance-none border border-transparent rounded w-full px-4 py-2 text-gray-700  my-2
 								focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
 							/>
