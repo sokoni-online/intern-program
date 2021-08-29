@@ -2,3 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+.sign-up{
+    @apply text-center text-3xl text-blue-400;
+}
+
+.label{
+    @apply my-3 block tracking-wide text-blue-400 text-base font-bold mb-2;
+}
+
+.inputs{
+    @apply bg-gray-200 appearance-none border border-transparent rounded w-full px-4 py-2 
+    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+}
+
+.error-message{
+    @apply text-red-400 text-sm;
+}

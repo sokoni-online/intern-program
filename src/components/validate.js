@@ -1,23 +1,26 @@
-import React from 'react'
 
 function validate(values) {
-    let errorMsg = {};
-    if (!values.emails) {
-        errorMsg.emails = "Email Required";
-    } else if (!/\S+@\S+\.\S+/.test(values.emails)) {
-        errorMsg.emails = "Invalid Email Address";
+    //error message variable to hold email,password and confirm password error message
+    const errorMsg = {};
+
+    if (!values.email) {
+        errorMsg.email = "Email Required";
+    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+        errorMsg.email = "Invalid Email Address";
     }
+
     if (!values.password) {
         errorMsg.password = "Password Required";
-    } else if (values.password.length < 5) {
+    } else if (values.password.length <6) {
         errorMsg.password="Use Strong Password"
     }
+    
     if (!values.confirmPassword) {
         errorMsg.confirmPassword = "Please Confirm your Password";
     } else if (values.password !== values.confirmPassword) {
         errorMsg.confirmPassword = "Passwords Don't Match";
     }
     return errorMsg;
-}
+} 
 
-export default validate
+export default validate;

@@ -3,12 +3,14 @@ import Button from './Buttons';
 import validate from './validate';
 
 function SignUp() {
-	const [values, setValues] = useState({
-		emails: "",
+
+	const [values,setValues] = useState({
+		email: "",
 		password: "",
 		confirmPassword: ""
 	});
-	const [email, setEmail] = useState(() => {
+
+	const [email,setEmail] = useState(() => {
 		// getting stored value
 		const saved = localStorage.getItem("email");
 		const initialValue = JSON.parse(saved);
@@ -27,15 +29,6 @@ function SignUp() {
 		return initialValue || "";
 	});
 
-	//handling change
-	const handleChange = e => {
-		const { name, value } = e.target;
-		setValues({
-			...value,
-			[name]: value
-		}
-		)
-	};
 	//storing the inputs
 	useEffect(() => {
 		// storing input name
@@ -44,37 +37,35 @@ function SignUp() {
 		localStorage.setItem("confirmPassword", JSON.stringify(confirmPassword));
 	}, [email, password, confirmPassword]);
 
+	const [errorMsg, setErrorMsg] = useState({});
 	//prevent page reload
 	const handleSubmit = e => {
 		e.preventDefault();
 		setErrorMsg(validate(values));
 	};
 
-	const [errorMsg, setErrorMsg] = useState({});
-
 	return (
 		<div>
 			<div className="p-10 my-30 ">
-				<h2 className="text-center text-3xl text-blue-400">SIGN UP BELOW</h2>
-				<form action="">
+				<h2 className="sign-up">SIGN UP BELOW</h2>
+				<form action="" onClick={handleSubmit}>
 					<div className="flex justify-center ">
 						<div className="lg:w-1/3 md:w-2/3 w-full">
 							<br />
-							<label className=" my-3 block tracking-wide text-blue-400 text-base font-bold mb-2">
+							<label className="label">
 								Email
 							</label>
 							<input
 								type="email"
 								id="email"
 								name="email"
-								value={values.emails}
-								onChange={handleChange}
+								value={values.email}
+								onChange={(e) => setValues(setEmail(e.target.value))}
 								placeholder="Your Email"
-								className=" bg-gray-200 appearance-none border border-transparent rounded w-full px-4 py-2
-								focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+								className="inputs"
 							/>
-							{errorMsg.emails && <p>{errorMsg.emails}</p>}
-							<label className=" my-3 block tracking-wide text-blue-400 text-base font-bold mb-2">
+							{errorMsg.email && <p className="error-message">{errorMsg.email}</p>}
+							<label className="label">
 								Password
 							</label>
 							<input
@@ -83,12 +74,11 @@ function SignUp() {
 								name="password"
 								value={values.password}
 								placeholder="Password"
-								onChange={handleChange}
-								className=" bg-gray-200 appearance-none border border-transparent focus:outline-none 
-								focus:ring-2 focus:ring-blue-500 focus:border-transparent rounded w-full px-4 py-2 text-gray-700 my-2"
+								onChange={(e) => setValues(setPassword(e.target.value))}
+								className="inputs"								
 							/>
-							{errorMsg.password && <p>{errorMsg.password}</p>}
-							<label className=" my-3 block tracking-wide text-blue-400 text-base font-bold mb-2">
+							{errorMsg.password && <p className="error-message">{errorMsg.password}</p>}
+							<label className="label">
 								Confirm Password
 							</label>
 							<input
@@ -97,17 +87,18 @@ function SignUp() {
 								name="password"
 								value={values.confirmPassword}
 								placeholder="Confirm Password"
-								onChange={handleChange}
-								className="bg-gray-200 appearance-none border border-transparent rounded w-full px-4 py-2 text-gray-700  my-2
-								focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+								onChange={(e) => setValues(setConfirmPassword(e.target.value))}
+								className="inputs"
 							/>
-							{errorMsg.confirmPassword && <p>{errorMsg.confirmPassword}</p>}
+							{errorMsg.confirmPassword && <p className="error-message">{errorMsg.confirmPassword}</p>}
 							<Button
 								value="Sign Up"
-								styleClass="bg-blue-500 hover:bg-gray-400 hover:text-white hover:shadow-xl w-full hover:border-blue-300 hover:border 
+								styleClass="bg-blue-500
+								hover:bg-gray-400 mt-2
+								hover:text-white hover:shadow-xl
+								w-full hover:border-blue-300 hover:border
 								px-5 py-2 text-white grid-flow-row text-lg font-bold"
 								id="btnSignUp"
-								onClick={handleSubmit}
 							/>
 						</div>
 					</div>
