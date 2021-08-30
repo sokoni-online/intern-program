@@ -1,35 +1,23 @@
 import { useState, useEffect } from "react";
 
-const useForm =(callback,Validate) => {
-    const [values, setValues] = useState({
-        email:'',
-        password:'',
-        confirmPassword:''
-    })
-    const [error,setError] = useState({});
-    const [isSubmit, setIsubmit] = useState(false);
-    const handleChange = e => {
-        const { name, value } = e.target;
-        setValues({
-            ...value,
-            [name]:value
-        }
-        )
-    };
-    const handleSubmit = e => {
-        e.preventDefault();
-        setError(Validate(values));
-        setIsubmit(true);
-    };
+    function getStorageValue(key, defaultValue) {
+        const saved = localStorage.getItem(key);
+        const initial = JSON.parse(saved);
+        return initial || defaultValue;
+    } 
 
+    export const useLocalStorage = (key, defaultValue) => {
+        const [value, setValue] = useState(() => {
+            return getStorageValue(key, defaultValue);
+        });
 
-    useEffect(() => {
-        if (Object.keys(error).length === 0 &&
-            isSubmit) {
-            callback();
-        }
-    }, [error]);
-    return { handleChange,values,handleSubmit,error};
-}
+        useEffect(() => {
+          
+            localStorage.setItem(key, JSON.stringify(value));
+        }, [key, value]);
 
-export default useForm;
+        return [value, setValue];
+};
+    
+  
+export default useLocalStorage;

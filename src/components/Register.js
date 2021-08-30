@@ -44,6 +44,14 @@ function SignUp() {
 		setErrorMsg(validate(values));
 	};
 
+	//handle change
+	const handleChange = event => {
+		setValues({
+			...values,
+			[event.target.name]: event.target.value
+		}
+		);
+	};
 	return (
 		<div>
 			<div className="p-10 my-30 ">
@@ -60,7 +68,7 @@ function SignUp() {
 								id="email"
 								name="email"
 								value={values.email}
-								onChange={(e) => setValues(setEmail(e.target.value))}
+								onChange={handleChange}
 								placeholder="Your Email"
 								className="inputs"
 							/>
@@ -74,7 +82,7 @@ function SignUp() {
 								name="password"
 								value={values.password}
 								placeholder="Password"
-								onChange={(e) => setValues(setPassword(e.target.value))}
+								onChange={handleChange}
 								className="inputs"								
 							/>
 							{errorMsg.password && <p className="error-message">{errorMsg.password}</p>}
@@ -84,10 +92,10 @@ function SignUp() {
 							<input
 								type="password"
 								id="password1"
-								name="password"
+								name="confirmPassword"
 								value={values.confirmPassword}
 								placeholder="Confirm Password"
-								onChange={(e) => setValues(setConfirmPassword(e.target.value))}
+								onChange={handleChange}
 								className="inputs"
 							/>
 							{errorMsg.confirmPassword && <p className="error-message">{errorMsg.confirmPassword}</p>}

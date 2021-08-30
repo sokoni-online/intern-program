@@ -17,7 +17,8 @@ function validate(values) {
     
     if (!values.confirmPassword) {
         errorMsg.confirmPassword = "Please Confirm your Password";
-    } else if (values.password !== values.confirmPassword) {
+    }
+     else if (values.confirmPassword !== values.password) {
         errorMsg.confirmPassword = "Passwords Don't Match";
     }
     return errorMsg;
