@@ -56,7 +56,7 @@ function SignUp() {
 		<div>
 			<div className="p-10 my-30 ">
 				<h2 className="sign-up">SIGN UP BELOW</h2>
-				<form action="" onClick={handleSubmit}>
+				<form action="" onSubmit={handleSubmit}>
 					<div className="flex justify-center ">
 						<div className="lg:w-1/3 md:w-2/3 w-full">
 							<br />
