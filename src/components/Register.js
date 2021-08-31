@@ -35,6 +35,7 @@ function SignUp() {
 		localStorage.setItem("email", JSON.stringify(email));
 		localStorage.setItem("password", JSON.stringify(password));
 		localStorage.setItem("confirmPassword", JSON.stringify(confirmPassword));
+		
 	}, [email, password, confirmPassword]);
 
 	const [errorMsg, setErrorMsg] = useState({});
@@ -42,16 +43,23 @@ function SignUp() {
 	const handleSubmit = e => {
 		e.preventDefault();
 		setErrorMsg(validate(values));
+		setEmail(values.email);
+		setConfirmPassword(values.confirmPassword);
+		setPassword(values.password);
 	};
 
 	//handle change
 	const handleChange = event => {
 		setValues({
 			...values,
-			[event.target.name]: event.target.value
+			[event.target.name]: event.target.value,
+			
 		}
 		);
 	};
+
+
+
 	return (
 		<div>
 			<div className="p-10 my-30 ">
