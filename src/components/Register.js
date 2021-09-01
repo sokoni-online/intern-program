@@ -39,25 +39,43 @@ function SignUp() {
 	}, [email, password, confirmPassword]);
 
 	const [errorMsg, setErrorMsg] = useState({});
+	//signup user here
+	function signUser() {
+		setEmail(values.email);
+		setConfirmPassword(values.confirmPassword);
+		setPassword(values.password);
+	}
 	//prevent page reload
 	const handleSubmit = e => {
 		e.preventDefault();
 		setErrorMsg(validate(values));
-		setEmail(values.email);
-		setConfirmPassword(values.confirmPassword);
-		setPassword(values.password);
+		signUser();
+		clearState();
+		
+		
 	};
 
 	//handle change
 	const handleChange = event => {
 		setValues({
 			...values,
-			[event.target.name]: event.target.value,
-			
+			[event.target.name]: event.target.value
+	
 		}
 		);
 	};
 
+	//to hold  empty fields
+	const initialState = {
+		email: "",
+		password: "",
+		confirmPassword: ""
+	};
+
+  //this calls the initialstate and set each value to empty
+	const clearState = () => {
+		setValues({ ...initialState });
+	};
 
 
 	return (
