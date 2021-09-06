@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const Navigation = ({toggler}) => {
+const Navigation = ({ toggler }) => {
 	return (
 		<nav
 			className=" flex justify-between items-center h-20 bg-blue-400 shadow bg-opacity-100 

@@ -4,13 +4,13 @@ import validate from './validate';
 
 function SignUp() {
 
-	const [values,setValues] = useState({
+	const [values, setValues] = useState({
 		email: "",
 		password: "",
 		confirmPassword: ""
 	});
 
-	const [email,setEmail] = useState(() => {
+	const [email, setEmail] = useState(() => {
 		// getting stored value
 		const saved = localStorage.getItem("email");
 		const initialValue = JSON.parse(saved);
@@ -27,6 +27,7 @@ function SignUp() {
 		const savedPassword = localStorage.getItem("password");
 		const initialValue = JSON.parse(savedPassword);
 		return initialValue || "";
+		
 	});
 
 	//storing the inputs
@@ -35,7 +36,7 @@ function SignUp() {
 		localStorage.setItem("email", JSON.stringify(email));
 		localStorage.setItem("password", JSON.stringify(password));
 		localStorage.setItem("confirmPassword", JSON.stringify(confirmPassword));
-		
+
 	}, [email, password, confirmPassword]);
 
 	const [errorMsg, setErrorMsg] = useState({});
@@ -51,8 +52,6 @@ function SignUp() {
 		setErrorMsg(validate(values));
 		signUser();
 		clearState();
-		
-		
 	};
 
 	//handle change
@@ -60,7 +59,6 @@ function SignUp() {
 		setValues({
 			...values,
 			[event.target.name]: event.target.value
-	
 		}
 		);
 	};
@@ -72,7 +70,7 @@ function SignUp() {
 		confirmPassword: ""
 	};
 
-  //this calls the initialstate and set each value to empty
+	//this calls the initialstate and set each value to empty
 	const clearState = () => {
 		setValues({ ...initialState });
 	};
@@ -109,7 +107,7 @@ function SignUp() {
 								value={values.password}
 								placeholder="Password"
 								onChange={handleChange}
-								className="inputs"								
+								className="inputs"
 							/>
 							{errorMsg.password && <p className="error-message">{errorMsg.password}</p>}
 							<label className="label">
