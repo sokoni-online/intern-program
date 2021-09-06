@@ -1,8 +1,7 @@
 import React from 'react';
 import Button from './Buttons';
 import {Link} from 'react-router-dom';
-function Login() {
-
+function Login(){
 	return (
 		<div className="p-10 my-30">
 			<h2 className="text-center text-3xl text-blue-400 ">SIGN IN</h2>
