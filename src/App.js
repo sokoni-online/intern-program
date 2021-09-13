@@ -4,6 +4,7 @@ import Login from './components/login';
 import MobileControl from './components/Mobilecontrol.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SignUp from './components/Register.js';
+import LoginSuccess from './components/LoginSuccess';
 function App() {
 
 	const [isToggle,setIsToggle] = useState(false);
@@ -30,6 +31,7 @@ function App() {
 				<MobileControl isToggle={isToggle} toggler={toggler} />
 				<Switch>
 					<Route path="/login" exact component={Login} />
+					<Route path="/LoginSuccess" exact component={LoginSuccess} />
 					<Route path="/" exact component={Home} />
 					<Route path="/Register" exact component={SignUp} />
 				</Switch>
