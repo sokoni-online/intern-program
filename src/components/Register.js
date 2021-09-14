@@ -39,11 +39,28 @@ function SignUp() {
 	}, [email, password, confirmPassword]);
 
 	const [errorMsg, setErrorMsg] = useState({});
+
 	//signup user here
 	function signUser() {
 		setEmail(values.email);
 		setConfirmPassword(values.confirmPassword);
 		setPassword(values.password);
+
+		// Create user object
+		let user = {email, password, confirmPassword}
+		console.warn(user);
+
+			fetch('https://fakestoreapi.com/users', {
+			method: 'POST',
+			body: JSON.stringify(user),
+			headers: {
+				"Content-Type": 'application/json',
+				"Accept": 'application/json'
+			}
+		})
+
+		.then(res => res.json())
+		.then(json => console.log(json))
 	}
 	//prevent page reload
 	const handleSubmit = e => {
@@ -126,6 +143,7 @@ function SignUp() {
 							/>
 							{errorMsg.confirmPassword && <p className="error-message">{errorMsg.confirmPassword}</p>}
 							<Button
+								onClick = {signUser}
 								value="Sign Up"
 								styleClass="bg-blue-500
 								hover:bg-gray-400 mt-2
