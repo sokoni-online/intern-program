@@ -4,14 +4,13 @@ import Login from './components/login';
 import MobileControl from './components/Mobilecontrol.js';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SignUp from './components/Register.js';
-function App() {
+import SignOut from './components/Singout.js';
 
+function App(props, {signIn}) {
 	const [isToggle,setIsToggle] = useState(false);
-
 	const toggler = () => {
 		setIsToggle(!isToggle);
 	};
-
 	useEffect(() => {
 		 const moveMenu=()=>{
 			if(window.innerWidth>768 && isToggle){
@@ -29,9 +28,15 @@ function App() {
 				<Navigation toggler={toggler} />
 				<MobileControl isToggle={isToggle} toggler={toggler} />
 				<Switch>
-					<Route path="/login" exact component={Login} />
-					<Route path="/" exact component={Home} />
-					<Route path="/Register" exact component={SignUp} />
+					{signIn ?
+						<Route path="/Singout" exact component={SignOut} />
+						:
+						<>
+							<Route path="/login" exact component={Login} />
+							<Route path="/" exact component={Home} />
+							<Route path="/Register" exact component={SignUp} />
+						</>
+					}
 				</Switch>
 			</div>
 		</Router>
