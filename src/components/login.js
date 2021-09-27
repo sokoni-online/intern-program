@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import Button from './Buttons';
 import { Link, withRouter,useHistory} from 'react-router-dom';
 import ValidateLog from './loginValidate';
-import App from '../App';
 
-function Login() {
+
+
+function Login(props) {
 	const [values, setValues] = useState({
 		email: '',
 		password: ''
@@ -18,18 +19,20 @@ function Login() {
 	const [logged, setLogged] = useState(false);
 	const [logMessage, setLogMessage] = useState("");
 	const history = useHistory();
-	function signIn() {
+	
+	const signIn =()=> {
 		const initialValueEmail = JSON.parse(savedEmail);
 		const initialValue = JSON.parse(savedPassword);
 
 		if (initialValueEmail === nameEmail && initialValue === namePassword) {
-			setLogged(true);
-			setLogMessage("Loggin Success Full");
-			history.push('/LoginSuccess');
+			setLogged(!logged);
+			history.push('/');
+			setLogMessage("Login Success Full");
 		} else {
 			setLogged(false);
 			setLogMessage("Incorrect Email Or Password");
 		}
+		return logged;
 	}
 
 	//prevent page reload
